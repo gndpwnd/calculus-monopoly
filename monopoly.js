@@ -1119,6 +1119,7 @@ function Player(name, color) {
 	this.chanceJailCard = false;
 	this.bidding = true;
 	this.human = true;
+
 	// this.AI = null;
 
 	this.pay = function (amount, creditor) {
@@ -2415,7 +2416,10 @@ function land(increasedRent) {
 }
 
 function roll() {
+	
 	var p = player[turn];
+
+	// check if math question was answered correctly
 
 	$("#option").hide();
 	$("#buy").show();
@@ -2532,17 +2536,8 @@ function roll() {
 	}
 }
 
-function play() {
-	if (game.auction()) {
-		return;
-	}
-
-	turn++;
-	if (turn > pcount) {
-		turn -= pcount;
-	}
-
-	var p = player[turn];
+function continue_play(p) {
+	// if they answered correctly, they get a turn
 	game.resetDice();
 
 	document.getElementById("pname").innerHTML = p.name;
@@ -2605,6 +2600,34 @@ function play() {
 			game.next();
 		}
 	}
+}
+
+function play() {
+	if (game.auction()) {
+		return;
+	}
+
+	turn++;
+	if (turn > pcount) {
+		turn -= pcount;
+	}
+
+	var p = player[turn];
+
+	// check if math question was answered correctly
+
+	popup("<div>Did " + p.name + " answer their question correctly?</div>", continue_play);
+
+	var answer = prompt("Did " + player[turn].name + " answer their math question correctly? (yes or no)", "yes");
+	if (answer === "yes") {
+		// continue play
+		continue_play(p);
+	} else {
+		// they didn't answer correctly, so they lose a turn
+		addAlert(player[turn].name + " did not answer their math question correctly and lost a turn.");
+		popup(player[turn].name + " did not answer their math question correctly and lost a turn.", game.next);
+	}
+
 }
 
 function setup() {
