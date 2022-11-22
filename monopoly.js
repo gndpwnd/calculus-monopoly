@@ -1,3 +1,5 @@
+let num_log_entry = 1;
+
 function Game() {
 	var die1;
 	var die2;
@@ -1222,14 +1224,16 @@ Array.prototype.randomize = function(length) {
 function addAlert(alertText) {
 	$alert = $("#alert");
 
-	$(document.createElement("div")).text(alertText).appendTo($alert);
+	$(document.createElement("div")).text(num_log_entry.toString() + ") " + alertText).appendTo($alert);
 
 	// Animate scrolling down alert element.
 	$alert.stop().animate({"scrollTop": $alert.prop("scrollHeight")}, 1000);
 
 	if (!player[turn].human) {
-		player[turn].AI.alertList += "<div>" + alertText + "</div>";
+		player[turn].AI.alertList += "<div>" + (num_log_entry.toString() + ") ") + alertText + "</div>";
 	}
+
+	num_log_entry++;
 }
 
 function popup(HTML, action, option) {
