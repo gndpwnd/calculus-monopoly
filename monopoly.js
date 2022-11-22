@@ -2283,7 +2283,6 @@ function unmortgage(index) {
 	return true;
 }
 
-
 function land(increasedRent) {
 	increasedRent = !!increasedRent; // Cast increasedRent to a boolean value. It is used for the ADVANCE TO THE NEAREST RAILROAD/UTILITY Chance cards.
 
@@ -2545,35 +2544,26 @@ function continue_play(p) {
 	game.resetDice();
 
 	document.getElementById("pname").innerHTML = p.name;
-
 	addAlert("It is " + p.name + "'s turn.");
-
 	// Check for bankruptcy.
 	p.pay(0, p.creditor);
-
 	$("#landed, #option, #manage").hide();
 	$("#board, #control, #moneybar, #viewstats, #buy").show();
-
 	doublecount = 0;
 	if (p.human) {
 		document.getElementById("nextbutton").focus();
 	}
 	document.getElementById("nextbutton").value = "Roll Dice";
 	document.getElementById("nextbutton").title = "Roll the dice and move your token accordingly.";
-
 	$("#die0").hide();
 	$("#die1").hide();
-
 	if (p.jail) {
 		$("#landed").show();
 		document.getElementById("landed").innerHTML = "You are in jail.<input type='button' title='Pay $50 fine to get out of jail immediately.' value='Pay $50 fine' onclick='payfifty();' />";
-
 		if (p.communityChestJailCard || p.chanceJailCard) {
 			document.getElementById("landed").innerHTML += "<input type='button' id='gojfbutton' title='Use &quot;Get Out of Jail Free&quot; card.' onclick='useJailCard();' value='Use Card' />";
 		}
-
 		document.getElementById("nextbutton").title = "Roll the dice. If you throw doubles, you will get out of jail.";
-
 		if (p.jailroll === 0)
 			addAlert("This is " + p.name + "'s first turn in jail.");
 		else if (p.jailroll === 1)
@@ -2582,7 +2572,6 @@ function continue_play(p) {
 			document.getElementById("landed").innerHTML += "<div>NOTE: If you do not throw doubles after this roll, you <i>must</i> pay the $50 fine.</div>";
 			addAlert("This is " + p.name + "'s third turn in jail.");
 		}
-
 		if (!p.human && p.AI.postBail()) {
 			if (p.communityChestJailCard || p.chanceJailCard) {
 				useJailCard();
@@ -2591,14 +2580,11 @@ function continue_play(p) {
 			}
 		}
 	}
-
 	updateMoney();
 	updatePosition();
 	updateOwned();
-
 	$(".money-bar-arrow").hide();
 	$("#p" + turn + "arrow").show();
-
 	if (!p.human) {
 		if (!p.AI.beforeTurn()) {
 			game.next();
@@ -2619,11 +2605,9 @@ function play() {
 	var p = player[turn];
 
 	// check if math question was answered correctly
+	// ask yes/no question
 
-	popup("<div>Did " + p.name + " answer their question correctly?</div>", continue_play);
-
-	var answer = prompt("Did " + player[turn].name + " answer their math question correctly? (yes or no)", "yes");
-	if (answer === "yes") {
+	if (confirm("Did " + p.name + " answer the math question correctly?")) {
 		// continue play
 		continue_play(p);
 	} else {
