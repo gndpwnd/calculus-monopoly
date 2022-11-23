@@ -1,5 +1,7 @@
 let num_log_entry = 1;
 
+max_num_players = 33;
+
 function Game() {
 	var die1;
 	var die2;
@@ -2602,6 +2604,7 @@ function skip(p) {
 }
 
 function play() {
+
 	if (game.auction()) {
 		return;
 	}
@@ -2613,6 +2616,8 @@ function play() {
 
 	var p = player[turn];
 
+	$("#setup").hide();
+	$("#board, #control, #moneybar, #viewstats").show();
 	if (confirm("Did " + p.name + " answer the math question correctly?")) {
 		// continue play
 		continue_play(p);
@@ -2720,7 +2725,7 @@ function menuitem_onmouseout(element) {
 window.onload = function() {
 	game = new Game();
 
-	for (var i = 0; i <= 8; i++) {
+	for (var i = 0; i <= max_num_players; i++) {
 		player[i] = new Player("", "");
 		player[i].index = i;
 	}
