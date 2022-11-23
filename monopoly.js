@@ -2592,6 +2592,15 @@ function continue_play(p) {
 	}
 }
 
+function skip(p) {
+	updatePosition();
+	// lose a turn
+	$("#board, #control, #moneybar, #viewstats").show();
+	
+	addAlert(p.name + " did not answer their math question correctly and lost a turn.");
+	popup(p.name + " did not answer their math question correctly and lost a turn.", play);
+}
+
 function play() {
 	if (game.auction()) {
 		return;
@@ -2604,16 +2613,11 @@ function play() {
 
 	var p = player[turn];
 
-	// check if math question was answered correctly
-	// ask yes/no question
-
 	if (confirm("Did " + p.name + " answer the math question correctly?")) {
 		// continue play
 		continue_play(p);
 	} else {
-		// they didn't answer correctly, so they lose a turn
-		addAlert(player[turn].name + " did not answer their math question correctly and lost a turn.");
-		popup(player[turn].name + " did not answer their math question correctly and lost a turn.", game.next);
+		skip(p);
 	}
 
 }
