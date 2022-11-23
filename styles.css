@@ -371,8 +371,9 @@ td {
 }
 
 #stats {
-	max-width: 914px;
-	min-width: 454px;
+	max-width: 75vw;
+	min-width: 10vw;
+	max-height: 75vh;
 	font-family: Arial, sans-serif;
 	font-size: 14px;
 	padding: 10px;
@@ -386,15 +387,15 @@ td {
 	z-index: 17;
 	margin: auto;
 	position: relative;
-	top: 0px;
-	left: 0px;
+	
 	-webkit-user-select: none;
 	user-select: none;
+	overflow-y: scroll;
 }
 
 #statswrap {
 	position: absolute;
-	top: 250px;
+	top: 10vh;
 	left: 0px;
 	width: 100%;
 	display: none;
@@ -411,8 +412,8 @@ td {
 #statsclose {
 	display: block;
 	position: absolute;
-	top: -24px;
-	right: -25px;
+	top:-2%;
+    right:-0.75%;
 	width: 30px;
 	height: 30px;
 	border: none;

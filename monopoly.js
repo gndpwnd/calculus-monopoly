@@ -2096,12 +2096,12 @@ function showStats() {
 	var mortgagetext,
 	housetext;
 	var write;
-	HTML = "<table align='center'><tr>";
+	HTML = "<table id='statstable' align='center'><tr>";
 
 	for (var x = 1; x <= pcount; x++) {
 		write = false;
 		p = player[x];
-		if (x == 5) {
+		if (x % 5 === 1) {
 			HTML += "</tr><tr>";
 		}
 		HTML += "<td class='statscell' id='statscell" + x + "' style='border: 2px solid " + p.color + "' ><div class='statsplayername'>" + p.name + "</div>";
@@ -2171,6 +2171,7 @@ function showStats() {
 		$("#statswrap").show();
 	});
 }
+
 
 function showdeed(property) {
 	var sq = square[property];
