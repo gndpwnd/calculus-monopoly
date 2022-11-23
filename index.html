@@ -14,6 +14,10 @@
 </head>
 
 <body>
+	<div id="loading">
+		<img id="loading-image" src="images/loading.gif" alt="Loading..." />
+		<p id="loading-text">Loading Resources...</p>
+	</div>
 
 	<div id="popupbackground"></div>
 	<div id="popupwrap">
@@ -417,9 +421,14 @@
 	</div>
 
 	<div id="setup">
+
 		<div>
-			<a href="/about.html" title="About this game">About</a>
-			<a href="/rules.html" title="Rules of the game">Rules</a>
+			<h1 style="text-align: center; font-weight: bold; font-size: 3em;">Calculus Monopoly</h1>
+		</div>
+	
+
+		<div>
+			<p style="text-align: center; font-weight: bold; font-size: 1.5em;"><a href="/about.html" title="About this game">About</a></p>
 		</div>
 
 
@@ -1418,6 +1427,12 @@
 			</tr>
 		</table>
 	</div>
+
+	<script>
+		$(window).on('load', function () {
+			$('#loading').delay(5000).fadeOut();
+		});
+	</script>
 
 </body>
 </html>
