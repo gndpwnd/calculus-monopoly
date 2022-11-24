@@ -257,7 +257,8 @@ td {
 	font-size: 16px;
 	border: 1px solid blue;
 	border-radius: 5px 5px 0px 0px;
-	height: 5vw;
+	min-height: 1vw;
+	max-height: 5vw;
 	width: 99%;
 	margin: 0px;
 	background-color: #305BC9;
@@ -285,12 +286,14 @@ td {
 	color: #FFFFFF;
 	margin-left: 2px;
 	border-left: none;
+	height: fit-content;
 }
 
 #trade-menu-item {
 	color: #AAAAAA;
 	border-right: none;
 	margin-right: 2px;
+	height: fit-content;
 }
 
 

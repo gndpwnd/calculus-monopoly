@@ -1267,6 +1267,7 @@ function popup(HTML, action, option) {
 
 	// Ok
 	} else if (option !== "blank") {
+		
 		$("#popuptext").append("<div><input type='button' value='OK' id='popupclose' /></div>");
 		$("#popupclose").focus();
 
